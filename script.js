@@ -4,10 +4,19 @@ var agenteFiltrado = []
 const gun1 = ["Classic","Shorty","Frenzy","Ghost","Bandit","Sheriff"]
 const gun2 = ["Sheriff","Stinger","Spectre","Bucky","Judge","Bulldog","Guardian","Marshal","Outlaw","Ares"]
 const gun3 = ["Judge","Guardian","Phantom","Vandal", "Outlaw", "Operator", "Odin"]
-const gun4 = ["Phantom","Vandal","Odin", "Operator"]
+const gun4 = ["Phantom", "Vandal", "Odin", "Operator"]
+
+var lock1 = false;
+var lock2 = false;
+var lock3 = false;
+var lock4 = false;
 
 // vincula no botão
 document.getElementById("btnRandomize").addEventListener("click", randomizar);
+document.getElementById("btnGun1").addEventListener("click", () => {lock1 = !lock1; lockar();});
+document.getElementById("btnGun2").addEventListener("click", () => {lock2 = !lock2; lockar();});
+document.getElementById("btnGun3").addEventListener("click", () => {lock3 = !lock3; lockar();});
+document.getElementById("btnGun4").addEventListener("click", () => {lock4 = !lock4; lockar();});
 
 document.getElementById("btnRandomize2").addEventListener("click", randomizarArma);
 
@@ -34,6 +43,17 @@ document.addEventListener("DOMContentLoaded", () => {
     renderizarAgentes.apply();
     renderizarGridArmas.call();
 });
+
+function lockar() {
+    const botao1 = document.getElementById("btnGun1");
+    const botao2 = document.getElementById("btnGun2");
+    const botao3 = document.getElementById("btnGun3");
+    const botao4 = document.getElementById("btnGun4");
+    botao1.classList.toggle("travado", lock1);
+    botao2.classList.toggle("travado", lock2);
+    botao3.classList.toggle("travado", lock3);
+    botao4.classList.toggle("travado", lock4);
+}
 
 function renderizarAgentes() {
     const container = document.getElementById("AgenteGrid");
@@ -220,6 +240,10 @@ function obterArmasAtivas() {
 function randomizar() {
     obterArmasAtivas.call();
     // randomiza Agente
+    if (agenteFiltrado.length == 0) {
+        window.alert("Choose at least one agent!");
+        return;
+    }
     const rnAgent = Math.floor(Math.random() * agenteFiltrado.length);
     const nomeSorteado = agenteFiltrado[rnAgent];
 
@@ -239,47 +263,53 @@ function randomizar() {
 
 function randomizarArma() {
     obterArmasAtivas.call();
+    if (pistolSelecionadas.length == 0 || halfSelecionadas.length ==0 || fullSelecionadas.length == 0 || full2Selecionadas.length == 0) {
+        window.alert("Choose at least one Gun!");
+        return;
+    }
 	// randomiza Round 1
-    const rnGun1 = Math.floor(Math.random() * pistolSelecionadas.length);
-    const armaSorteado_1 = pistolSelecionadas[rnGun1];
+	if (lock1 ==false){
+		const rnGun1 = Math.floor(Math.random() * pistolSelecionadas.length);
+        const armaSorteado_1 = pistolSelecionadas[rnGun1];
+        const gun_imgElement1 = document.getElementById("gun1");
+        const gun_nameElement1 = document.getElementById("Arma1");
+        gun_imgElement1.src = `Randomizer/guns/${armaSorteado_1}.webp`;
+        gun_imgElement1.alt = `${armaSorteado_1}`;
+        gun_nameElement1.textContent = armaSorteado_1;
+	}
 
     // randomiza Round 2
-    const rnGun2 = Math.floor(Math.random() * halfSelecionadas.length);
-    const armaSorteado_2 = halfSelecionadas[rnGun2];
+    if (lock2 == false){
+		const rnGun2 = Math.floor(Math.random() * halfSelecionadas.length);
+        const armaSorteado_2 = halfSelecionadas[rnGun2];
+        const gun_imgElement2 = document.getElementById("gun2");
+        const gun_nameElement2 = document.getElementById("Arma2");
+        gun_imgElement2.src = `Randomizer/guns/${armaSorteado_2}.webp`;
+        gun_imgElement2.alt = `${armaSorteado_2}`;
+        gun_nameElement2.textContent = armaSorteado_2;
+	}
 
     // randomiza Round 3
-    const rnGun3 = Math.floor(Math.random() * fullSelecionadas.length);
-    const armaSorteado_3 = fullSelecionadas[rnGun3];
+    if (lock3 == false){
+		const rnGun3 = Math.floor(Math.random() * fullSelecionadas.length);
+        const armaSorteado_3 = fullSelecionadas[rnGun3];
+        const gun_imgElement3 = document.getElementById("gun3");
+        const gun_nameElement3 = document.getElementById("Arma3");
+        gun_imgElement3.src = `Randomizer/guns/${armaSorteado_3}.webp`;
+        gun_imgElement3.alt = `${armaSorteado_3}`;
+        gun_nameElement3.textContent = armaSorteado_3;
+	}
 
     // randomiza Round 4
-    const rnGun4 = Math.floor(Math.random() * full2Selecionadas.length);
-    const armaSorteado_4 = full2Selecionadas[rnGun4];
-
-    const gun_imgElement1 = document.getElementById("gun1");
-    const gun_nameElement1 = document.getElementById("Arma1");
-    const gun_imgElement2 = document.getElementById("gun2");
-    const gun_nameElement2 = document.getElementById("Arma2");
-    const gun_imgElement3 = document.getElementById("gun3");
-    const gun_nameElement3 = document.getElementById("Arma3");
-    const gun_imgElement4 = document.getElementById("gun4");
-    const gun_nameElement4 = document.getElementById("Arma4");
-
-
-    gun_imgElement1.src = `Randomizer/guns/${armaSorteado_1}.webp`;
-    gun_imgElement1.alt = `${armaSorteado_1}`;
-    gun_nameElement1.textContent = armaSorteado_1;
-
-    gun_imgElement2.src = `Randomizer/guns/${armaSorteado_2}.webp`;
-    gun_imgElement2.alt = `${armaSorteado_2}`;
-    gun_nameElement2.textContent = armaSorteado_2;
-
-    gun_imgElement3.src = `Randomizer/guns/${armaSorteado_3}.webp`;
-    gun_imgElement3.alt = `${armaSorteado_3}`;
-    gun_nameElement3.textContent = armaSorteado_3;
-
-    gun_imgElement4.src = `Randomizer/guns/${armaSorteado_4}.webp`;
-    gun_imgElement4.alt = `${armaSorteado_4}`;
-    gun_nameElement4.textContent = armaSorteado_4;
+    if (lock4 == false){
+		const rnGun4 = Math.floor(Math.random() * full2Selecionadas.length);
+        const armaSorteado_4 = full2Selecionadas[rnGun4];
+        const gun_imgElement4 = document.getElementById("gun4");
+        const gun_nameElement4 = document.getElementById("Arma4");
+        gun_imgElement4.src = `Randomizer/guns/${armaSorteado_4}.webp`;
+        gun_imgElement4.alt = `${armaSorteado_4}`;
+        gun_nameElement4.textContent = armaSorteado_4;
+	}
 }
 // gera 1 agente quando a pagina inicia
 document.addEventListener("DOMContentLoaded", randomizar);
