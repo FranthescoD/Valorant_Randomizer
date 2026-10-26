@@ -1,5 +1,5 @@
 // Lista fixa de nomes
-const todosAgentes = ["astra","breach","brimstone","chamber","clove","cypher","deadlock","fade","gekko","harbor","iso","jett","KAYO","killjoy","miks","neon","omen","phoenix","raze","reyna","sage","skye","sova","tejo","veto","viper","vyse","waylay","yoru"];
+const todosAgentes = ["astra","breach","brimstone","chamber","clove","cypher","deadlock","fade","gekko","harbor","hush","iso","jett","KAYO","killjoy","miks","neon","omen","phoenix","raze","reyna","sage","skye","sova","tejo","veto","viper","vyse","waylay","yoru"];
 var agenteFiltrado = []
 const gun1 = ["Classic","Shorty","Frenzy","Ghost","Bandit","Sheriff"]
 const gun2 = ["Sheriff","Stinger","Spectre","Bucky","Judge","Bulldog","Guardian","Marshal","Outlaw","Ares"]
